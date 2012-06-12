@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<SensorsClusterSettings><!--File created by ComLibSim at [/home/daniel/ComLibSim/config/6.xml]--><Cluster name="Cluster online"><Sensor tag="sensor_tag" online="false" x="10.000000" y="-50.000000" adata="50" type="linear"/><Sensor tag="sensor_tag" online="true" x="10.000000" y="-50.000000" adata="50" type="linear"/></Cluster></SensorsClusterSettings>

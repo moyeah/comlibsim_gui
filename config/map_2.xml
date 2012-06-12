@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<SensorsClusterSettings>
+    <!-- File created by ComLibSim at [/home/daniel/ComLibSim/config/map_2.xml] -->
+    <Cluster name="UntitledCluster" />
+    <Sensors>
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+        <Sensor tag="sensor_tag" online="1" x="10" y="-50" adata="50" type="linear" />
+    </Sensors>
+</SensorsClusterSettings>

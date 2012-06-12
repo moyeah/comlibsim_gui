@@ -1,0 +1,58 @@
+<!--
+    ui_info.xml
+
+    Copyright (C) 2011-2012  Daniel Sousa   <da.arada@gmail.com>
+    Copyright (C) 2011-2012  Jorge Estrela  <jes@isep.ipp.pt>
+
+    Autor:
+      Daniel Sousa  <da.arada@gmail.com>
+
+    Orientador:
+      Jorge Estrela  <jes@isep.ipp.pt>
+-->
+<ui>
+  <!-- MenuBar -->
+  <menubar name='MenuBar'>
+    <!-- MenuBar|ComLibSim -->
+    <menu action='ComLibSimMenu'>
+      <!-- MenuBar|ComLibSim|PlotCluster -->
+      <menuitem action='PlotCluster' />
+      <separator />
+      <!-- MenuBar|ComLibSim|Quit -->
+      <menuitem action='Quit' />
+    </menu>
+    <!-- MenuBar|Sensors -->
+    <menu action='SensorsMenu'>
+      <!-- MenuBar|Sensors|Add -->
+      <menuitem action='SensorAdd' />
+      <!-- MenuBar|Sensors|Delete -->
+      <menuitem action='SensorDel' />
+      <separator />
+      <!-- MenuBar|Sensors|Import -->
+      <menuitem action='SensorImport' />
+      <!-- MenuBar|Sensors|Export -->
+      <menuitem action='SensorExport' />
+    </menu>
+    <!-- MenuBar|Help -->
+    <menu action='HelpMenu'>
+      <separator />
+      <!-- MenuBar|Help|About -->
+      <menuitem action='HelpAbout' />
+    </menu>
+  </menubar>
+  <!-- ToolBar -->
+  <toolbar name='ToolBar'>
+    <!-- ToolBar|Add -->
+    <toolitem action='SensorAdd' />
+    <!-- ToolBar|Delete -->
+    <toolitem action='SensorDel' />
+    <separator />
+    <!-- ToolBar|Import -->
+    <toolitem action='SensorImport' />
+    <!-- ToolBar|Export -->
+    <toolitem action='SensorExport' />
+    <separator />
+    <!-- ToolBar|PlotCluster -->
+    <toolitem action='PlotCluster' />
+  </toolbar>
+</ui>

@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+<head>
+<title>libxml++ - C++ bindings for libxml2</title>
+<meta name='generator' content='cgit v0.9.0.2'/>
+<meta name='robots' content='index, nofollow'/>
+<link rel='stylesheet' type='text/css' href='/browse/cgit-gnome.css'/>
+<link rel='shortcut icon' href='http://www-old.gnome.org/img/logo/foot-16.png'/>
+<link rel='alternate' title='Atom feed' href='http://git.gnome.org/browse/libxml++/atom/examples/dom_parser/example_with_namespace.xml?h=master' type='application/atom+xml'/>
+</head>
+<body>
+<div id="page">
+<ul id="general">
+<li id="siteaction-gnome_home" class="home">
+<a href="http://www.gnome.org/" title="Home">Home</a>
+</li>
+<li id="siteaction-gnome_news">
+<a href="http://news.gnome.org" title="News">News</a>
+</li>
+<li id="siteaction-gnome_projects">
+<a href="http://www.gnome.org/projects/" title="Projects">Projects</a>
+</li>
+<li id="siteaction-gnome_art">
+
+<a href="http://art.gnome.org" title="Art">Art</a>
+</li>
+<li id="siteaction-gnome_support">
+<a href="http://www.gnome.org/support/" title="Support">Support</a>
+</li>
+<li id="siteaction-gnome_development">
+<a href="http://developer.gnome.org" title="Development">Development</a>
+</li>
+<li id="siteaction-gnome_community">
+<a href="http://www.gnome.org/community/" title="Community">Community</a>
+</li>
+</ul>
+<div id="gnome-header">
+
+<h1>
+GNOME GIT source code repository
+</h1>
+<div id="gnome-tabs">
+<ul id="portal-globalnav">
+<!--
+<li id="portaltab-root">
+<a href="/"><span>Home</span></a>
+</li>
+-->
+<li class="selected"><a href="/cgit/"><span>Repository Browser</span></a></li>
+<li><a href="http://live.gnome.org/Git"><span>Git Help</span></a></li>
+</ul>
+</div> <!-- end of #tabs -->
+
+</div> <!-- end of #header -->
+</div>
+<div id='cgit'><table id='header'>
+<tr>
+<td class='main'><a href='/browse/'>index</a> : <a title='libxml++' href='/browse/libxml++/'>libxml++</a></td><td class='form'><form method='get' action=''>
+<select name='h' onchange='this.form.submit();'>
+<option value='LIBXMLPP_BRANCH_1_0'>LIBXMLPP_BRANCH_1_0</option>
+<option value='LIBXMLPP_BRANCH_2_6'>LIBXMLPP_BRANCH_2_6</option>
+<option value='gnome-2-10'>gnome-2-10</option>
+<option value='gnome-2-12'>gnome-2-12</option>
+<option value='gnome-2-14'>gnome-2-14</option>
+<option value='gnome-2-18'>gnome-2-18</option>
+<option value='gnome-2-22'>gnome-2-22</option>
+<option value='gnome-2-24'>gnome-2-24</option>
+<option value='gnome-2-26'>gnome-2-26</option>
+<option value='gnome-2-30'>gnome-2-30</option>
+<option value='gnome-2-8'>gnome-2-8</option>
+<option value='master' selected='selected'>master</option>
+</select> <input type='submit' name='' value='switch'/></form></td></tr>
+<tr><td class='sub'>C++ bindings for libxml2</td><td class='sub right'></td></tr></table>
+<table class='tabs'><tr><td>
+<a href='/browse/libxml++/'>summary</a><a href='/browse/libxml++/refs/'>refs</a><a href='/browse/libxml++/log/examples/dom_parser/example_with_namespace.xml'>log</a><a class='active' href='/browse/libxml++/tree/examples/dom_parser/example_with_namespace.xml'>tree</a><a href='/browse/libxml++/commit/examples/dom_parser/example_with_namespace.xml'>commit</a><a href='/browse/libxml++/diff/examples/dom_parser/example_with_namespace.xml'>diff</a></td><td class='form'><form class='right' method='get' action='/browse/libxml++/log/examples/dom_parser/example_with_namespace.xml'>
+<select name='qt'>
+<option value='grep'>log msg</option>
+<option value='author'>author</option>
+<option value='committer'>committer</option>
+<option value='range'>range</option>
+</select>
+<input class='txt' type='text' size='10' name='q' value=''/>
+<input type='submit' value='search'/>
+</form>
+</td></tr></table>
+<div class='path'>path: <a href='/browse/libxml++/tree/'>root</a>/<a href='/browse/libxml++/tree/examples'>examples</a>/<a href='/browse/libxml++/tree/examples/dom_parser'>dom_parser</a>/<a href='/browse/libxml++/tree/examples/dom_parser/example_with_namespace.xml'>example_with_namespace.xml</a></div><div class='content'>blob: 6ee6f4b2e8ab9e6a200c2a11666072ab4a5be737 (<a href='/browse/libxml++/plain/examples/dom_parser/example_with_namespace.xml'>plain</a>)
+<table summary='blob content' class='blob'>
+<tr><td class='linenumbers'><pre><a class='no' id='n1' name='n1' href='#n1'>1</a>
+<a class='no' id='n2' name='n2' href='#n2'>2</a>
+<a class='no' id='n3' name='n3' href='#n3'>3</a>
+<a class='no' id='n4' name='n4' href='#n4'>4</a>
+<a class='no' id='n5' name='n5' href='#n5'>5</a>
+<a class='no' id='n6' name='n6' href='#n6'>6</a>
+</pre></td>
+<td class='lines'><pre><code>&lt;?xml version='<span class="hl num">1.0</span>' encoding='UTF-<span class="hl num">8</span>'?<span class="hl kwa">&gt;</span>
+
+<span class="hl kwa">&lt;xmi</span>:XMI xmi:version='<span class="hl num">2.1</span>' timestamp='Tue Aug <span class="hl num">12 23</span>:<span class="hl num">29</span>:<span class="hl num">35</span> MSD <span class="hl num">2008</span>' xmlns:uml='http://schema.omg.org/spec/UML/<span class="hl num">2.0</span>' xmlns:xmi='http://schema.omg.org/spec/XMI/<span class="hl num">2.1</span>'<span class="hl kwa">&gt;</span>
+	<span class="hl kwa">&lt;ownedAttribute</span> xmi:type='uml:Property' type='_10_5_1_48330b1a_1210846583577_94225_312'<span class="hl kwa">/&gt;</span>
+<span class="hl kwa">&lt;/xmi</span>:XMI<span class="hl kwa">&gt;</span>
+
+</code></pre></td></tr></table>
+</div> <!-- class=content -->
+<div id="footer">
+<p>Copyright &copy; 2004-2011, <a href="http://www.gnome.org/">The GNOME Project</a><br />
+   GNOME and the Foot Logo are trademarks of
+   <a href="http://foundation.gnome.org/">The GNOME Foundation</a></p>
+
+<p>Hosted by <a href="http://www.redhat.com/">Red Hat</a>. 
+   Powered by <a href="http://hjemli.net/git/cgit/">cgit</a></p>
+
+<p>To follow the commits, subscribe to <a href="http://mail.gnome.org/mailman/listinfo/commits-list">commits-list</a> 
+   (can be limited to specific modules) or look at 
+   <a href="http://cia.vc/stats/project/GNOME">CIA.vc</a></p>
+</div>
+</div> <!-- id=cgit -->
+</body>
+</html>
