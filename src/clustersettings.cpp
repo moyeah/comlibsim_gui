@@ -13,6 +13,7 @@
 
 /* Include files */
 #include "clustersettings.h"
+#include <glibmm.h>
 #include <libxml++/parsers/domparser.h>
 #include <libxml++/nodes/node.h>
 #include <libxml++/nodes/element.h>
@@ -26,7 +27,7 @@ namespace ComLibSim
 
 /* Method XML_to_TreeModel */
 bool ClusterSettings::XML_to_TreeModel (const Glib::ustring& filename,
-                                Glib::RefPtr<Gtk::ListStore> sensors_store)
+                             Glib::RefPtr<Gtk::ListStore> sensors_store)
 {
   /* Create parser */
 // TODO validate xml file
@@ -36,19 +37,21 @@ bool ClusterSettings::XML_to_TreeModel (const Glib::ustring& filename,
     if (parser)
     {
       /* Get root node */
-      const xmlpp::Node *root_node = parser.get_document  ()->get_root_node ();
+      const xmlpp::Node *root_node = parser.get_document ()->
+                                                       get_root_node ();
 
       /* Get cluster node and cluster name */
       xmlpp::Node::NodeList cluster_list =
                             root_node->get_children ("Cluster");
-      xmlpp::Node::NodeList::iterator cluster_iter = cluster_list.begin ();
+      xmlpp::Node::NodeList::iterator cluster_iter = 
+                                                  cluster_list.begin ();
       const xmlpp::Element *cluster_node =
-                            dynamic_cast<const xmlpp::Element*> (*cluster_iter);
+                    dynamic_cast<const xmlpp::Element*> (*cluster_iter);
       set_name (cluster_node->get_attribute_value ("name"));
 
       /* Get sensors */
       xmlpp::Node::NodeList sensors_list =
-                            cluster_node->get_children ("Sensor");
+                                  cluster_node->get_children ("Sensor");
       xmlpp::Node::NodeList::iterator sensor_iter;
       Gtk::TreeModel::Row row;
       sensors_store->clear ();
@@ -57,24 +60,20 @@ bool ClusterSettings::XML_to_TreeModel (const Glib::ustring& filename,
            sensor_iter++)
       {
         const xmlpp::Element *sensor_element =
-                            dynamic_cast<const xmlpp::Element*> (*sensor_iter);
+                     dynamic_cast<const xmlpp::Element*> (*sensor_iter);
         row = *(sensors_store->append ());
-        row[m_Columns.m_col_tag] =
-                      sensor_element->get_attribute_value ("tag");
-        if (!sensor_element->get_attribute_value ("online").compare ("true"))
-          row[m_Columns.m_col_online] = true;
-        else
-          row[m_Columns.m_col_online] = false;
         row[m_Columns.m_col_x] =
                       Glib::Ascii::strtod (
                       sensor_element->get_attribute_value ("x"));
         row[m_Columns.m_col_y] =
                       Glib::Ascii::strtod (
                       sensor_element->get_attribute_value ("y"));
-        Glib::ustring tmp = sensor_element->get_attribute_value ("adata");
-        row[m_Columns.m_col_adata] = atoi(tmp.c_str ());
-        row[m_Columns.m_col_type] =
-                      sensor_element->get_attribute_value ("type");
+        row[m_Columns.m_col_max_rate] =
+                      Glib::Ascii::strtod (
+                      sensor_element->get_attribute_value ("max_rate"));
+        row[m_Columns.m_col_data] =
+                      Glib::Ascii::strtod (
+                      sensor_element->get_attribute_value ("data"));
       }
     }
   }
@@ -90,7 +89,7 @@ bool ClusterSettings::XML_to_TreeModel (const Glib::ustring& filename,
 
 /* Method TreeModel_to_XML */
 void ClusterSettings::TreeModel_to_XML (const Glib::ustring& filename,
-                                Glib::RefPtr<Gtk::ListStore> sensors_list)
+                              Glib::RefPtr<Gtk::ListStore> sensors_list)
 {
   /* Get ListStore contents */
   sensors_list->foreach_iter (sigc::mem_fun (*this,
@@ -100,7 +99,8 @@ void ClusterSettings::TreeModel_to_XML (const Glib::ustring& filename,
   xmlpp::Document doc;
 
   /* Create root node */
-  xmlpp::Element *root_node = doc.create_root_node ("SensorsClusterSettings");
+  xmlpp::Element *root_node =
+                        doc.create_root_node ("SensorsClusterSettings");
 
   /* Add root comment */
   Glib::ustring message;
@@ -123,8 +123,6 @@ void ClusterSettings::TreeModel_to_XML (const Glib::ustring& filename,
     xmlpp::Element *sensor_element = cluster_node->add_child ("Sensor");
 
     /* Set sensor attributes */
-    sensor_element->set_attribute ("tag", iter->get_tag ());
-    sensor_element->set_attribute ("online", iter->get_online_as_string ());
     Glib::ustring tmp;
     tmp = Glib::ustring::format (std::fixed, std::setprecision (6),
                                  iter->get_x ());
@@ -132,10 +130,12 @@ void ClusterSettings::TreeModel_to_XML (const Glib::ustring& filename,
     tmp = Glib::ustring::format (std::fixed, std::setprecision (6),
                                  iter->get_y ());
     sensor_element->set_attribute ("y", tmp);
-    tmp = Glib::ustring::format (std::fixed, std::setprecision (0),
-                                 iter->get_adata ());
-    sensor_element->set_attribute ("adata", tmp);
-    sensor_element->set_attribute ("type", iter->get_type ());
+    tmp = Glib::ustring::format (std::fixed, std::setprecision (6),
+                                 iter->get_max_rate ());
+    sensor_element->set_attribute ("max_rate", tmp);
+    tmp = Glib::ustring::format (std::fixed, std::setprecision (6),
+                                 iter->get_data ());
+    sensor_element->set_attribute ("data", tmp);
   }
 
   /* Save to xml file */
@@ -143,15 +143,14 @@ void ClusterSettings::TreeModel_to_XML (const Glib::ustring& filename,
 }
 
 /* Callback on_foreach_iter */
-bool ClusterSettings::on_foreach_iter (const Gtk::TreeModel::iterator& iter)
+bool ClusterSettings::on_foreach_iter (
+                                   const Gtk::TreeModel::iterator& iter)
 {
   Gtk::TreeModel::Row row = *iter;
-  m_Sensors.push_back (SensorSettings (row[m_Columns.m_col_tag],
-                                       row[m_Columns.m_col_online],
-                                       row[m_Columns.m_col_x],
+  m_Sensors.push_back (SensorSettings (row[m_Columns.m_col_x],
                                        row[m_Columns.m_col_y],
-                                       row[m_Columns.m_col_adata],
-                                       row[m_Columns.m_col_type]));
+                                       row[m_Columns.m_col_max_rate],
+                                       row[m_Columns.m_col_data]));
   return false;
 }
 

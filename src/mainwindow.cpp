@@ -131,8 +131,9 @@ void MainWindow::init_bars ()
 
   /* Disable widgets */
   m_refUIManager->get_widget ("/MenuBar/SensorsMenu/SensorDel")->
-                                                     set_sensitive (false);
-  m_refUIManager->get_widget ("/ToolBar/SensorDel")->set_sensitive (false);
+                                                 set_sensitive (false);
+  m_refUIManager->get_widget ("/ToolBar/SensorDel")->
+                                                 set_sensitive (false);
 }
 
 /* Create sensors map */
@@ -150,7 +151,8 @@ void MainWindow::init_sensorsmap ()
   m_VBoxSensors.pack_start (m_HBoxCluster, Gtk::PACK_SHRINK, 10);
 
   /* Set and pack ScrolledWindow */
-  m_ScrolledWindow.set_policy (Gtk::POLICY_AUTOMATIC, Gtk::POLICY_AUTOMATIC);
+  m_ScrolledWindow.set_policy (Gtk::POLICY_AUTOMATIC,
+                               Gtk::POLICY_AUTOMATIC);
   m_ScrolledWindow.set_border_width (5);
   m_VBoxSensors.pack_start (m_ScrolledWindow);
 
@@ -163,13 +165,15 @@ void MainWindow::init_sensorsmap ()
   m_ScrolledWindow.add (m_TreeView);
 
   /* Add TreeView columns */
-  m_TreeView.append_column_editable ("Tag", m_Columns.m_col_tag);
-  m_TreeView.append_column_editable ("Online", m_Columns.m_col_online);
-  m_TreeView.append_column_editable ("X coordinate", m_Columns.m_col_x);
-  m_TreeView.append_column_editable ("Y coordinate", m_Columns.m_col_y);
-  m_TreeView.append_column_editable ("Data to collect (Kb)", m_Columns.m_col_adata);
-  m_TreeView.append_column_editable ("Type", m_Columns.m_col_type);
-
+  m_TreeView.append_column_editable ("X coordinate",
+                                     m_Columns.m_col_x);
+  m_TreeView.append_column_editable ("Y coordinate",
+                                     m_Columns.m_col_y);
+  m_TreeView.append_column_editable ("Max ComRate",
+                                     m_Columns.m_col_max_rate);
+  m_TreeView.append_column_editable ("Data to collect (Kb)",
+                                     m_Columns.m_col_data);
+  
   /* Fill 1st TreeView row*/
   MainWindow::on_sensors_add ();
 
@@ -257,14 +261,16 @@ void MainWindow::on_selection_changed ()
   if (m_refTreeSelection->count_selected_rows () > 0)
   {
     m_refUIManager->get_widget ("/MenuBar/SensorsMenu/SensorDel")->
-                                                       set_sensitive (true);
-    m_refUIManager->get_widget ("/ToolBar/SensorDel")->set_sensitive (true);
+                                                   set_sensitive (true);
+    m_refUIManager->get_widget ("/ToolBar/SensorDel")->
+                                                   set_sensitive (true);
   }
   else
   {
     m_refUIManager->get_widget ("/MenuBar/SensorsMenu/SensorDel")->
-                                                       set_sensitive (false);
-    m_refUIManager->get_widget ("/ToolBar/SensorDel")->set_sensitive (false);
+                                                  set_sensitive (false);
+    m_refUIManager->get_widget ("/ToolBar/SensorDel")->
+                                                  set_sensitive (false);
   }
 }
 
@@ -273,17 +279,16 @@ void MainWindow::on_sensors_add ()
 {
   /* Add template row */
   m_row = *(m_refTreeModel->append ());
-  m_row[m_Columns.m_col_tag] = "sensor_tag";
-  m_row[m_Columns.m_col_online] = true;
-  m_row[m_Columns.m_col_x] = 10.0;
-  m_row[m_Columns.m_col_y] = -50.0;
-  m_row[m_Columns.m_col_adata] = 50;
-  m_row[m_Columns.m_col_type] = "linear";
+  m_row[m_Columns.m_col_x] = 1.0;
+  m_row[m_Columns.m_col_y] = 2.0;
+  m_row[m_Columns.m_col_max_rate] = 100.0;
+  m_row[m_Columns.m_col_data] = 50;
 
   /* Enable widgets */
   m_refUIManager->get_widget ("/MenuBar/SensorsMenu/SensorExport")->
-                                                        set_sensitive (true);
-  m_refUIManager->get_widget ("/ToolBar/SensorExport")->set_sensitive (true);
+                                                   set_sensitive (true);
+  m_refUIManager->get_widget ("/ToolBar/SensorExport")->
+                                                   set_sensitive (true);
 }
 
 /* Callback on_sensors_del */
@@ -386,7 +391,8 @@ void MainWindow::on_sensors_export ()
     ClusterSettings cluster_settings (m_ClusterName.get_text ());
 
     /* Save cluster settings */
-    cluster_settings.TreeModel_to_XML (dialog.get_filename (), m_refTreeModel);
+    cluster_settings.TreeModel_to_XML (dialog.get_filename (),
+                                       m_refTreeModel);
   }
 }
 

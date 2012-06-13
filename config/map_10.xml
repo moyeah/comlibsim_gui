@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<SensorsClusterSettings><!--File created by ComLibSim at [/home/daniel/comlibsim_gui/config/map_10.xml]--><Cluster name="Cluster XPTO"><Sensor x="1.000000" y="2.000000" max_rate="100.000000" data="50.000000"/></Cluster></SensorsClusterSettings>

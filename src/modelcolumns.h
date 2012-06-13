@@ -28,21 +28,17 @@ class ModelColumns : public Gtk::TreeModel::ColumnRecord
 public:
   ModelColumns ()
   {
-    add (m_col_tag);
-    add (m_col_online);
     add (m_col_x);
     add (m_col_y);
-    add (m_col_adata);
-    add (m_col_type);
+    add (m_col_max_rate);
+    add (m_col_data);
   }
 
   /* Child widgets */
-  Gtk::TreeModelColumn<Glib::ustring> m_col_tag;
-  Gtk::TreeModelColumn<bool>          m_col_online;
-  Gtk::TreeModelColumn<gdouble>       m_col_x;
-  Gtk::TreeModelColumn<gdouble>       m_col_y;
-  Gtk::TreeModelColumn<guint>         m_col_adata;
-  Gtk::TreeModelColumn<Glib::ustring> m_col_type;
+  Gtk::TreeModelColumn<gdouble> m_col_x;
+  Gtk::TreeModelColumn<gdouble> m_col_y;
+  Gtk::TreeModelColumn<gdouble> m_col_max_rate;
+  Gtk::TreeModelColumn<gdouble> m_col_data;
 };
 
 } /* namespace */

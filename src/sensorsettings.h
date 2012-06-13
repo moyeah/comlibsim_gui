@@ -28,52 +28,36 @@ class SensorSettings
 public:
   /* Constructor and destructor */
   SensorSettings () {}
-  SensorSettings (const Glib::ustring& tag,
-                  bool                 online,
-                  const gdouble        x,
-                  const gdouble        y,
-                  const guint          adata,
-                  const Glib::ustring& type)
+  SensorSettings (const gdouble x,
+                  const gdouble y,
+                  const gdouble max_rate,
+                  const gdouble data)
   {
-    m_Tag = tag;
-    m_Online = online;
     m_X = x;
     m_Y = y;
-    m_Adata = adata;
-    m_Type = type;
+    m_MaxRate = max_rate;
+    m_Data = data;
   }
   virtual ~SensorSettings () {}
 
   /* Get methods */
-  const std::string& get_tag ()    const { return m_Tag.raw (); }
-  bool               get_online () const { return m_Online; }
-  double             get_x ()      const { return m_X; }
-  double             get_y ()      const { return m_Y; }
-  unsigned int       get_adata ()  const { return m_Adata; }
-  const std::string& get_type ()   const { return m_Type.raw (); }
+  double get_x        () const { return m_X; }
+  double get_y        () const { return m_Y; }
+  double get_max_rate () const { return m_MaxRate; }
+  double get_data     () const { return m_Data; }
 
   /* Set methods */
-  void set_tag    (const Glib::ustring& tag)  { m_Tag = tag; }
-  void set_online (bool online)               { m_Online = online; }
-  void set_x      (const gdouble x)           { m_X = x; }
-  void set_y      (const gdouble y)           { m_Y = y; }
-  void set_adata  (const guint adata)         { m_Adata = adata; }
-  void set_type   (const Glib::ustring& type) { m_Type = type; }
-
-  /* Other methods */
-  const std::string get_online_as_string () const
-  {
-    return m_Online ? "true" : "false";
-  }
+  void set_x        (const gdouble x)        { m_X = x; }
+  void set_y        (const gdouble y)        { m_Y = y; }
+  void ser_max_rate (const gdouble max_rate) { m_MaxRate = max_rate; }
+  void set_data     (const gdouble data)     { m_Data = data; }
 
 protected:
   /* Variables */
-  Glib::ustring m_Tag,
-                m_Type;
-  bool          m_Online;
-  gdouble       m_X,
-                m_Y;
-  guint         m_Adata;
+  gdouble m_X,
+          m_Y,
+          m_MaxRate,
+          m_Data;
 };
   
 } /* namespace */
