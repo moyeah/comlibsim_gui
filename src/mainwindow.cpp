@@ -240,6 +240,11 @@ void MainWindow::on_menu_quit ()
 /* Callback on_menu_about */
 void MainWindow::on_menu_about ()
 {
+  /* Create authors vector */
+  std::vector<Glib::ustring> authors (2);
+  authors[0] = "Daniel Sousa <da.arada@gmail.com>";
+  authors[1] = "Jorge Estrela  <jes@isep.ipp.pt>";
+
   /* Create AboutDialog */
   Gtk::AboutDialog dialog;
 
@@ -247,8 +252,8 @@ void MainWindow::on_menu_about ()
   dialog.set_program_name ("Communication Library Simulator");
   dialog.set_version ("version 0.0");
   dialog.set_copyright ("Copyright (C) 2011-2012  Daniel Sousa");
+  dialog.set_authors (authors);
 // TODO
-//  dialog.set_authors ("Daniel Sousa <da.arada@gmail.com>");
 //  dialog.set_logo ();
 
   /* Show AboutDialog */
